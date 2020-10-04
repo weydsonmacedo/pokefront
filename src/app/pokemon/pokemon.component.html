@@ -1,0 +1,35 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">POKEMON LIST</h4>
+                        <p class="card-category"> Here has a Pokemon List</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                        <mat-table #table [dataSource]="dados" #sort="matSort" matSort multiTemplateDataRows >
+                          <ng-container matColumnDef="{{ column.id }}" *ngFor="let column of columnNames">
+                            <mat-header-cell *matHeaderCellDef> {{column.id}} </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> 
+                            <span *ngIf="column.id!='acao'">{{element[column.value]}}</span> 
+                            </mat-cell>
+                          </ng-container>
+
+                          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                          <mat-row *matRowDef="let row; columns: displayedColumns;"
+                           matRipple class="element-row" >
+                           <!-- [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl" -->
+                        </mat-row>
+                        </mat-table>
+                   <mat-paginator [length]="dados.data.length" #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons  ></mat-paginator>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
